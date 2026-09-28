@@ -24,15 +24,16 @@ def ring(x, y):
         return 'double'
     else:
         return 'miss'
-          
-print(ring(0, 0)) #bull
-print(ring(0, 10))     # outer_bull
-print(ring(0, 50))     # single
-print(ring(60, 80))    # treble
-print(ring(120, 0))    # single
-print(ring(0, 165))    # double
-print(ring(0, 200))    # miss
 
+def angle(x,y):
+    a = math.degrees(math.atan2(y,x)) # finds the angle from the centre
+    return a
+
+
+print(angle(100, 0))    # right
+print(angle(0, 100))    # up
+print(angle(-100, 0))   # left
+print(angle(0, -100))   # down
 
 
 
