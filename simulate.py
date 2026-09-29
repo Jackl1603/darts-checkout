@@ -8,5 +8,12 @@ def throw(aim_x, aim_y, sigma):
     pointy = rng.normal(aim_y, sigma)
     return pointx, pointy
 
-x, y = throw(0, 103, 10)    # aim at treble 20, sigma 10
-print(x, y, score(x, y))
+def average_score(aim_x, aim_y, sigma, n):
+    total = 0
+    for i in range(n):
+        x,y = throw(aim_x, aim_y, sigma)
+        total += score(x,y)
+    return total/n
+
+print(average_score(0, 103, 60, 10000))   # aiming at treble 20
+print(average_score(0, 0, 60, 10000))     # aiming at the bull))
