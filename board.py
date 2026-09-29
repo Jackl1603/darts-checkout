@@ -37,12 +37,33 @@ def number(x,y):
     segment = int(shifted // 18)
     return NUMBERS[segment]
 
-print(number(0, 100))    # up: 20
-print(number(100, 0))    # right: 6
-print(number(-100, 0))   # left: 11
-print(number(0, -100))   # down: 3
-print(number(59, -81))   # bottom-right: 2
-print(number(95, -31))   # just below the 6: 10
+def score(x,y):
+    r = ring(x,y)
+    n = number(x,y)
+    if r == 'bull':
+        return 50
+    elif r == 'outer_bull':
+        return 25
+    elif r == 'treble':
+        return n * 3
+    elif r == 'double':
+        return n*2
+    elif r == 'miss':
+        return 0
+    else:
+        return n
+
+
+
+
+
+print(score(0, 0))       # bull: 50
+print(score(0, 10))      # outer bull: 25
+print(score(0, 50))      # single 20: 20
+print(score(0, 103))     # treble 20: 60
+print(score(0, 165))     # double 20: 40
+print(score(-103, 0))    # treble 11: 33
+print(score(0, 200))     # miss: 0
 
 
 
