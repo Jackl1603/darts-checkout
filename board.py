@@ -1,7 +1,7 @@
 # board.py - scoring a dart from where it lands on the board
 import math
 import numpy as np       
-    
+
 BULL_OUTER = 6.35
 OUTER_BULL_OUTER = 15.9
 TREBLE_INNER = 99
@@ -40,10 +40,10 @@ def number(x,y):
     return NUMBERS[segment]
 
 def number_many(xs,ys):
-    a = angle(x,y)
+    a = np.degrees(np.arctan2(ys, xs))
     shifted = (a + 9) % 360
-    segment = int(shifted // 18).astype(int)
-    return np.array(NUMBERS)[segments]
+    segment = (shifted // 18).astype(int)
+    return np.array(NUMBERS)[segment]
 
 def score(x,y):
     r = ring(x,y)
@@ -61,6 +61,16 @@ def score(x,y):
     else:
         return n
 
+
+def score_many(xs,ys):
+    r = np.sqrt(xs ** 2 + ys ** 2)
+    n = number_many(xs, ys)
+    return np.select([r <= BULL_OUTER, r <= OUTER_BULL_OUTER, r <= TREBLE_INNER, r <= TREBLE_OUTER, r<= DOUBLE_INNER, r<= DOUBLE_OUTER, r > DOUBLE_OUTER],
+                     [50, 25, n, n*3, n, n*2, 0])
+
+
+ 
+
 if __name__ == "__main__":
     print(score(0, 0))       # bull: 50
     print(score(0, 10))      # outer bull: 25
@@ -69,6 +79,10 @@ if __name__ == "__main__":
     print(score(0, 165))     # double 20: 40
     print(score(-103, 0))    # treble 11: 33
     print(score(0, 200))     # miss: 0
+
+    xs = np.array([0, 0, 0, 0, 0, -103, 0])
+    ys = np.array([0, 10, 50, 103, 165, 0, 200])
+    print(score_many(xs, ys))    # expect: [50 25 20 60 40 33  0]
 
 
 
