@@ -1,5 +1,6 @@
 # board.py - scoring a dart from where it lands on the board
 import math
+                 
 BULL_OUTER = 6.35
 OUTER_BULL_OUTER = 15.9
 TREBLE_INNER = 99
@@ -57,13 +58,8 @@ def score(x,y):
 
 
 
-print(score(0, 0))       # bull: 50
-print(score(0, 10))      # outer bull: 25
-print(score(0, 50))      # single 20: 20
-print(score(0, 103))     # treble 20: 60
-print(score(0, 165))     # double 20: 40
-print(score(-103, 0))    # treble 11: 33
-print(score(0, 200))     # miss: 0
+
+
 
 
 
