@@ -54,7 +54,14 @@ def score(x,y):
     else:
         return n
 
-
+if __name__ == "__main__":
+    print(score(0, 0))       # bull: 50
+    print(score(0, 10))      # outer bull: 25
+    print(score(0, 50))      # single 20: 20
+    print(score(0, 103))     # treble 20: 60
+    print(score(0, 165))     # double 20: 40
+    print(score(-103, 0))    # treble 11: 33
+    print(score(0, 200))     # miss: 0
 
 
 
