@@ -1,6 +1,7 @@
 # board.py - scoring a dart from where it lands on the board
 import math
-                 
+import numpy as np       
+    
 BULL_OUTER = 6.35
 OUTER_BULL_OUTER = 15.9
 TREBLE_INNER = 99
@@ -37,6 +38,12 @@ def number(x,y):
     shifted = (a + 9) % 360
     segment = int(shifted // 18)
     return NUMBERS[segment]
+
+def number_many(xs,ys):
+    a = angle(x,y)
+    shifted = (a + 9) % 360
+    segment = int(shifted // 18).astype(int)
+    return np.array(NUMBERS)[segments]
 
 def score(x,y):
     r = ring(x,y)
