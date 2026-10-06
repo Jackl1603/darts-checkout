@@ -21,12 +21,13 @@ def average_score_fast(aim_x, aim_y, sigma, n):
     ys = rng.normal(aim_y, sigma, n)
     return score_many(xs, ys).mean()
 
-    
-start = time.time()
-print(average_score(0, 103, 30, 10000))
-print("loop:", time.time() - start, "seconds")
 
-start = time.time()
-print(average_score_fast(0, 103, 30, 10000))
-print("fast:", time.time() - start, "seconds")
+if __name__ == "__main__":
+    start = time.time()
+    print(average_score(0, 103, 30, 10000))
+    print("loop:", time.time() - start, "seconds")
+
+    start = time.time()
+    print(average_score_fast(0, 103, 30, 10000))
+    print("fast:", time.time() - start, "seconds")
 
