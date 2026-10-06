@@ -1,5 +1,6 @@
 import numpy as np
-from board import score        # reuse your own function from board.py
+import time
+from board import score, score_many       # reuse your own function from board.py
 
 rng = np.random.default_rng()
 
@@ -15,5 +16,17 @@ def average_score(aim_x, aim_y, sigma, n):
         total += score(x,y)
     return total/n
 
-print(average_score(0, 103, 60, 10000))   # aiming at treble 20
-print(average_score(0, 0, 60, 10000))     # aiming at the bull))
+def average_score_fast(aim_x, aim_y, sigma, n):
+    xs  = rng.normal(aim_x, sigma, n)
+    ys = rng.normal(aim_y, sigma, n)
+    return score_many(xs, ys).mean()
+
+    
+start = time.time()
+print(average_score(0, 103, 30, 10000))
+print("loop:", time.time() - start, "seconds")
+
+start = time.time()
+print(average_score_fast(0, 103, 30, 10000))
+print("fast:", time.time() - start, "seconds")
+
